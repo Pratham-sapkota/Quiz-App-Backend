@@ -4,6 +4,6 @@ export class CreateOptionDto {
   @ApiProperty()
   option: string;
 
-  @ApiProperty()
-  ques_id: number;
+  @ApiProperty({ default: false })
+  isCorrect: boolean;
 }

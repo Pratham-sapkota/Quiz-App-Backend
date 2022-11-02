@@ -29,10 +29,10 @@ export class QuestionService {
 
   updateOne = async (
     id: number,
-    UpdateQuestionDto: UpdateQuestionDto,
+    updateQuestionDto: UpdateQuestionDto,
   ): Promise<UpdateQuestionDto> => {
-    UpdateQuestionDto.id = Number(id);
-    return await this.questionRepository.save(UpdateQuestionDto);
+    updateQuestionDto.id = Number(id);
+    return await this.questionRepository.save(updateQuestionDto);
   };
 
   deleteOne = async (id: any): Promise<boolean> => {

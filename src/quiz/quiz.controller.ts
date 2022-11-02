@@ -29,8 +29,8 @@ export class QuizController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.quizService.findOne(id);
+  findOne(@Param('id') id: number, @Param() params: any) {
+    return this.quizService.findOne(params);
   }
 
   @Put(':id')

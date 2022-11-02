@@ -14,8 +14,4 @@ export class QuizEntity {
   @ApiProperty()
   @Column()
   description: string;
-
-  // @ApiProperty()
-  // @OneToMany(() => QuestionEntity, (question) => question.quiz)
-  // questions: QuestionEntity[];
 }

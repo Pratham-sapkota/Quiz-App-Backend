@@ -28,8 +28,8 @@ export class OptionsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.optionsService.findOne(id);
+  findOne(@Param('id') id: number, @Param() params: any) {
+    return this.optionsService.findOne(params);
   }
 
   @Put(':id')

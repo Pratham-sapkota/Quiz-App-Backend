@@ -19,30 +19,30 @@ export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
 
   @Post()
-  create(@Body() createQuestionDto: CreateQuestionDto) {
-    return this.questionService.create(createQuestionDto);
+  async create(@Body() createQuestionDto: CreateQuestionDto) {
+    return await this.questionService.create(createQuestionDto);
   }
 
   @Get()
-  findAll() {
-    return this.questionService.findAll();
+  async findAll() {
+    return await this.questionService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.questionService.findOne(id);
+  async findOne(@Param('id') id: number, @Param() params: any) {
+    return await this.questionService.findOne(params);
   }
 
   @Put(':id')
-  update(
+  async update(
     @Param('id') id: number,
     @Body() updateQuestionDto: UpdateQuestionDto,
   ) {
-    return this.questionService.updateOne(id, updateQuestionDto);
+    return await this.questionService.updateOne(id, updateQuestionDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.questionService.deleteOne(id);
+  async remove(@Param('id') id: number) {
+    return await this.questionService.deleteOne(id);
   }
 }

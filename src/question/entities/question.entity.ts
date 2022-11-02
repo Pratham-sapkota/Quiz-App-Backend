@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { OptionEntity } from 'src/options/entities/option.entity';
+import { CreateQuizDto } from 'src/quiz/dto/create-quiz.dto';
 import { QuizEntity } from 'src/quiz/entities/quiz.entity';
 import {
   Column,
@@ -19,10 +20,6 @@ export class QuestionEntity {
   @Column({ nullable: false })
   question: string;
 
-  // @ApiProperty()
-  // @Column()
-  // quiz_id: number;
-
   @ApiProperty()
   @OneToMany(() => QuestionEntity, (option) => option.question)
   options: OptionEntity[];
@@ -32,6 +29,5 @@ export class QuestionEntity {
     cascade: true,
     eager: true,
   })
-  @JoinColumn()
   quiz: QuizEntity;
 }

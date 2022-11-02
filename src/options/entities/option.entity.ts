@@ -12,6 +12,13 @@ export class OptionEntity {
   option: string;
 
   @ApiProperty()
-  @ManyToOne(() => QuestionEntity, (question) => question.options)
+  @Column({ default: false })
+  isCorrect: boolean;
+
+  @ApiProperty()
+  @ManyToOne(() => QuestionEntity, (question) => question.options, {
+    cascade: true,
+    eager: true,
+  })
   question: QuestionEntity;
 }
