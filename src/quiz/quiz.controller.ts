@@ -1,8 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { QuizService } from './quiz.service';
 import { CreateQuizDto } from './dto/create-quiz.dto';
 import { UpdateQuizDto } from './dto/update-quiz.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Quiz')
 @Controller('quiz')
 export class QuizController {
   constructor(private readonly quizService: QuizService) {}
@@ -19,16 +30,16 @@ export class QuizController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.quizService.findOne(+id);
+    return this.quizService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateQuizDto: UpdateQuizDto) {
-    return this.quizService.update(+id, updateQuizDto);
+  @Put(':id')
+  update(@Param('id') id: number, @Body() updateQuizDto: UpdateQuizDto) {
+    return this.quizService.updateOne(id, updateQuizDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.quizService.remove(+id);
+    return this.quizService.deleteOne(id);
   }
 }

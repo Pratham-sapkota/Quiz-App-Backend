@@ -5,10 +5,21 @@ import { UserModule } from './user/user.module';
 import { QuestionModule } from './question/question.module';
 import { OptionsModule } from './options/options.module';
 import { QuizModule } from './quiz/quiz.module';
-import { AnswerModule } from './answer/answer.module';
+import { ConfigModule } from '@nestjs/config';
+import { MySqlConfigService } from './config/database.config.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [UserModule, QuestionModule, OptionsModule, QuizModule, AnswerModule],
+  imports: [
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+      useClass: MySqlConfigService,
+    }),
+    UserModule,
+    QuestionModule,
+    OptionsModule,
+    QuizModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
